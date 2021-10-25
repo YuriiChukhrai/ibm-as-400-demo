@@ -1,4 +1,4 @@
-![IBMi-AS400-LOGO](./doc/ibi-as400-logo.png "IBM AS/400")  ![TN5250J](./doc/tn5250j.jpg "TN5250J")
+![IBMi-AS400-LOGO](./doc/ibmi-as400-logo.png "IBM AS/400")  ![TN5250J](./doc/tn5250j.jpg "TN5250J")
 
 # IBM AS/400, TN5250J(JAVA) Demo [AS/400 Test Automation Tests]
 
