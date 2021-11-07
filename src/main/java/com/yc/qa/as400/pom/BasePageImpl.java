@@ -73,6 +73,4 @@ public class BasePageImpl implements BasePage {
 
         return this;
     }
-
-
 }//BasePage

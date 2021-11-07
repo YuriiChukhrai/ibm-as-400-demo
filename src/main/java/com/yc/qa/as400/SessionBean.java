@@ -46,6 +46,7 @@ import java.awt.event.ActionListener;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Properties;
 
 import javax.swing.JComponent;
@@ -58,10 +59,8 @@ public class SessionBean extends SessionPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	// //
 	// ===========================================================================
-	// // C o n s t r u c t o r s
-	// //
+	// C o n s t r u c t o r s
 	// ===========================================================================
 	public SessionBean(String configurationResource, String sessionName) {
 		this(new Properties(), configurationResource, sessionName);
@@ -69,25 +68,15 @@ public class SessionBean extends SessionPanel {
 
 	public SessionBean(Properties sessionProperties, String configurationResource, String sessionName) {
 
-		// Session52520 session = new Session5250(sessionProperties, null,
-		// sessionName, new SessionConfig(configurationResource, sessionName));
 		this(new Session5250(sessionProperties, null, sessionName,
 				new SessionConfig(configurationResource, sessionName)));
-		// super(sessionProperties, null, sessionName, new
-		// SessionConfig(configurationResource, sessionName));
-		// this.sessionProperties = sessionProperties;
-		// this.sessionProperties.put(SESSION_LOCALE, Locale.getDefault());
-		// this.getConfiguration().addSessionConfigListener(this);
 	}
 
 	public SessionBean(Session5250 session) {
-
 		super(session);
 		this.sessionProperties = session.sesProps;
 		this.sessionProperties.put(SESSION_LOCALE, Locale.getDefault());
 		this.getSession().getConfiguration().addSessionConfigListener(this);
-		
-		//this.sessionProperties.forEach((k,v) -> {System.out.println("Key ["+k+"] Value ["+v+"]");});
 	}
 
 	// ===========================================================================
@@ -96,7 +85,6 @@ public class SessionBean extends SessionPanel {
 	public void setHostName(String hostName) throws UnknownHostException, IllegalStateException {
 		failIfConnected();
 
-		// props.put(SESSION_HOST, hostName);
 		this.setIPAddress(InetAddress.getByName(hostName).getHostAddress());
 	}
 
@@ -201,11 +189,6 @@ public class SessionBean extends SessionPanel {
 		failIfConnected();
 
 		this.visibilityInterval = interval;
-
-		// if (this.visibilityInterval <= 0)
-		// this.setVisible(true);
-		// else
-		// this.setVisible(false);
 	}
 
 	@Override
@@ -248,7 +231,7 @@ public class SessionBean extends SessionPanel {
 	}
 
 	public void signoff() {
-		if (session.getVT() != null && this.isConnected()) {
+		if (Objects.nonNull(session.getVT()) && this.isConnected()) {
 				this.session.getVT().systemRequest("90");
 		}
 	}
@@ -277,9 +260,6 @@ public class SessionBean extends SessionPanel {
 								// font size
 			return;
 		}
-		// if ( (rect.getHeight() < prevRect.getHeight())
-		// || (rect.getWidth() < prevRect.getWidth())
-		// )
 		if (rect.getHeight() != prevRect.getHeight() || rect.getWidth() != prevRect.getWidth()) {
 			// //only necessary when it's going smaller
 			this.resizeMe();
@@ -336,7 +316,7 @@ public class SessionBean extends SessionPanel {
 		if (isSignificant(user))
 			sessionProperties.put("SESSION_CONNECT_USER", user);
 
-		if (password != null)
+		if (Objects.nonNull(password))
 			sessionProperties.put("SESSION_CONNECT_PASSWORD", password);
 
 		if (isSignificant(program))
@@ -409,16 +389,16 @@ public class SessionBean extends SessionPanel {
 	}
 
 	private boolean isFieldLength(String param) {
-		return param != null && param.length() == 10;
+		return Objects.nonNull(param) && param.length() == 10;
 	}
 
 	private void failIfConnected() {
-		if (session.getVT() != null && isConnected())
+		if (Objects.nonNull(session.getVT()) && isConnected())
 			throw new IllegalStateException("Cannot change property after being connected!");
 	}
 
 	private void failIfNot10(String param) {
-		if (param != null && param.length() > 13)
+		if (Objects.nonNull(param) && param.length() > 13)
 			throw new IllegalArgumentException("The length of the parameter cannot exceed 10 positions!");
 	}
 
@@ -440,7 +420,7 @@ public class SessionBean extends SessionPanel {
 	// U t i l i t y M e t h o d s
 	// ============================================================================
 	private static boolean isSignificant(String param) {
-		if (param != null && param.length() != 0)
+		if (Objects.nonNull(param) && param.length() != 0)
 			return true;
 
 		return false;
@@ -457,7 +437,7 @@ public class SessionBean extends SessionPanel {
 		FontMetrics fm = null;
 		Graphics g = comp.getGraphics();
 
-		if (g != null)
+		if (Objects.nonNull(g))
 			fm = g.getFontMetrics(f);
 		else
 			fm = comp.getFontMetrics(f);

@@ -5,6 +5,8 @@ import static com.yc.qa.as400.util.BaseConfig.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import lombok.extern.log4j.Log4j;
 import com.yc.qa.as400.TerminalDriver;
 
@@ -56,7 +58,7 @@ public final class ThreadLocalStore {
 
 	public static synchronized void cleanTn5250jScreenContentContainer() {
 		log.debug(String.format("TID [%d] - setTn5250jScreenContentContainer()", Thread.currentThread().getId()));
-		if (getTn5250jScreenContentContainer() != null) {
+		if (Objects.nonNull(getTn5250jScreenContentContainer()) && Objects.nonNull(getTn5250jScreenContentContainer().get())) {
 			getTn5250jScreenContentContainer().get().clear();
 		}
 		getTn5250jScreenContentContainer().remove();

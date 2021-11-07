@@ -7,6 +7,9 @@ import org.testng.annotations.Test;
 
 import static com.yc.qa.as400.util.ObjectSupplier.$;
 
+/**
+ * @author limit (Yurii Chukhrai)
+ */
 @Listeners(BaseListener.class)
 public class IbmAs400Test extends BaseTest{
 
@@ -19,7 +22,7 @@ public class IbmAs400Test extends BaseTest{
     @Description("Test: Login to the public IBMi AS-400 server - [http://PUB400.COM]")
     @Severity(SeverityLevel.BLOCKER)
     @Test(groups = "AS-400", enabled = true)
-    public void loginAs400Test() {
+    public void loginTest() {
 
         /*
         * TC:

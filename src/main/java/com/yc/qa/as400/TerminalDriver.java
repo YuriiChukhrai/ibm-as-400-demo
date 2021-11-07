@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.net.ConnectException;
 import java.util.*;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -199,7 +197,7 @@ public class TerminalDriver implements TerminalElementsMethods {
 	private TerminalDriver initFrame() {
 		frame = new JFrame("TN5250J");
 
-		/* Test Setings */
+		/* Test Settings */
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
@@ -288,7 +286,7 @@ public class TerminalDriver implements TerminalElementsMethods {
 		ScreenField field;
 		String textClean;
 
-		if (text != null) {
+		if (Objects.nonNull(text)) {
 			textClean = text.replaceAll(NBSP_REGEX, "").trim();
 
 			field = screen.gotoFieldID(idField);
@@ -463,7 +461,7 @@ public class TerminalDriver implements TerminalElementsMethods {
 		for (String inter : LinesAll) {
 			String currentLine = BaseUtils.regExp(pattern, inter, 1);
 
-			if (currentLine != null) {
+			if (Objects.nonNull( currentLine)) {
 				status = true;
 				break;
 			}
@@ -529,7 +527,7 @@ public class TerminalDriver implements TerminalElementsMethods {
 
 		String textClean;
 
-		if (text != null) {
+		if (Objects.nonNull(text)) {
 			textClean = text.replaceAll(NBSP_REGEX, "").trim();
 
 			while (field == null && index < content.length()) {

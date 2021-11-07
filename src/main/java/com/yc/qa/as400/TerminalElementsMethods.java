@@ -3,6 +3,9 @@ package com.yc.qa.as400;
 import com.yc.qa.as400.exception.IllegalLengthFieldAs400Exceptions;
 import org.tn5250j.keyboard.KeyMnemonic;
 
+/**
+ * @author limit (Yurii Chukhrai)
+ */
 public interface TerminalElementsMethods {
 	boolean waitForUnlock();
 	TerminalDriver sendEnter() throws InterruptedException;

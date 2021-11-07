@@ -6,6 +6,9 @@ import static com.yc.qa.as400.pom.UserTasksImpl.USER_MENU_ID;
 import static com.yc.qa.as400.pom.UserTasksImpl.USER_TASKS_LABEL;
 import static com.yc.qa.as400.util.ObjectSupplier.$;
 
+/**
+ * @author limit (Yurii Chukhrai)
+ */
 public final class MainMenuPageImpl extends BasePageImpl implements MainMenuPage {
 
     @Step("Go to the [1. User tasks]")
