@@ -1,7 +1,6 @@
 package com.yc.qa.as400;
 
 import static com.yc.qa.as400.util.Constants.*;
-import static core.dtc.AS400Constants.*;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;

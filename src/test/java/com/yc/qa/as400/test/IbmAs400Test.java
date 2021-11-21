@@ -11,7 +11,7 @@ import static com.yc.qa.as400.util.ObjectSupplier.$;
  * @author limit (Yurii Chukhrai)
  */
 @Listeners(BaseListener.class)
-public class IbmAs400Test extends BaseTest{
+public class IbmAs400Test extends BaseTest {
 
     @Feature("AS400")
     @Story("CIR-098")

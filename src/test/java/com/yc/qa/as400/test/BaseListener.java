@@ -30,10 +30,7 @@ public class BaseListener implements ITestListener {
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
-		if (Objects.nonNull(getTerminalDriverAs400()) && getTerminalDriverAs400().isTerminalConnected()) {
-			getTerminalDriverAs400().closeTN5250J();
-		}
-		getTerminalDriverAs400Container().remove();
+		BaseUtils.handleClosingTerminal();
 	}
 
 	/* Methods of Interface 'ITestListener' */
@@ -57,8 +54,11 @@ public class BaseListener implements ITestListener {
 		//NOP
 	}
 
+	/**
+	* Attach a) last screenshot of th5250j; b) screens (texts).
+	* Try to safe Surefire booster process.
+	**/
 	private void attachTestArtifacts(final String testState){
-		/* Try to safe Surefire booster process */
 		try {
 			BaseUtils.makeScreenCapture(String.format(" @Test - %s ", testState), Objects.nonNull(getTerminalDriverAs400()) ? getTerminalDriverAs400() : null);
 			attachText(" AS400 Screens text", BaseUtils.concatCollectionToString(getTn5250jScreenContent(), false));

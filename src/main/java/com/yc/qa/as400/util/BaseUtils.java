@@ -149,4 +149,10 @@ public final class BaseUtils {
 		return Objects.nonNull(sourceValue) ? sourceValue.replaceAll(Constants.CONTROL_CHARACTERS_REGEX, "").trim().replaceAll(regex, targetValue) : null;
 	}
 
+	public static void handleClosingTerminal() {
+		if (Objects.nonNull(ThreadLocalStore.getTerminalDriverAs400()) && ThreadLocalStore.getTerminalDriverAs400().isTerminalConnected()) {
+			ThreadLocalStore.getTerminalDriverAs400().closeTN5250J();
+		}
+		ThreadLocalStore.getTerminalDriverAs400Container().remove();
+	}
 }//BaseUtils

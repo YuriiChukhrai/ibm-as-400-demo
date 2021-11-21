@@ -261,7 +261,7 @@ public class SessionBean extends SessionPanel {
 			return;
 		}
 		if (rect.getHeight() != prevRect.getHeight() || rect.getWidth() != prevRect.getWidth()) {
-			// //only necessary when it's going smaller
+			// only necessary when it's going smaller
 			this.resizeMe();
 		}
 		prevRect = rect;

@@ -31,4 +31,5 @@ public final class Constants {
 
     public final static String LONG_INPUT_STRING_MSG = "TID [%d] Length of string more than length of current field [%s]. String [%s] / [%s]";
 
+    public final static String DISPLAY_MESSAGES = "Display Messages";
 }

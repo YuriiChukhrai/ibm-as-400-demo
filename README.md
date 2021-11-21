@@ -58,7 +58,7 @@ In project exist 3 kind of reports (location: ` {project.base.dir}\target\site\i
 
 ## DOC
 * [Allure report (HTML+JS)](./doc/ibmi-as-400-demo-allure-report.7z)
-* [Video demo (MP4)](./doc/ibmi-main-menu-pub400.mov)
+* [Video recording of demo (MOV)](./doc/ibmi-main-menu-pub400.mov)
 
 
 ## References
