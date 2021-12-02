@@ -18,6 +18,31 @@ import java.util.Objects;
 @Log4j
 public class BaseListener implements ITestListener {
 
+	/**
+	 * Attach:
+	 * a) last screenshot of th5250j;
+	 * b) screens (texts).
+	 * Try to safe Surefire booster process.
+	 **/
+	private void attachTestArtifacts(final String testState){
+		try {
+			if(Objects.nonNull(getTerminalDriverAs400())){
+				BaseUtils.makeScreenCapture(String.format(" @Test - %s ", testState), getTerminalDriverAs400());
+			}
+			
+			attachText(" AS400 Screens text", BaseUtils.concatCollectionToString(getTn5250jScreenContent(), false));
+		} catch (Throwable e) {
+			log.error(format("TID [%d] ERROR - Can't attache (screenshot/screen text context) test artifacts", Thread.currentThread().getId()));
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void onTestSkipped(ITestResult result) {
+		BaseUtils.handleClosingTerminal();
+	}
+
+	/* Methods of Interface 'ITestListener' */
 	@Override
 	public void onTestSuccess(ITestResult result) {
 		attachTestArtifacts("PASS");
@@ -28,12 +53,6 @@ public class BaseListener implements ITestListener {
 		attachTestArtifacts("FAIL");
 	}
 
-	@Override
-	public void onTestSkipped(ITestResult result) {
-		BaseUtils.handleClosingTerminal();
-	}
-
-	/* Methods of Interface 'ITestListener' */
 	@Override
 	public void onTestStart(ITestResult result) {
 		//NOP
@@ -52,19 +71,5 @@ public class BaseListener implements ITestListener {
 	@Override
 	public void onFinish(ITestContext context) {
 		//NOP
-	}
-
-	/**
-	* Attach a) last screenshot of th5250j; b) screens (texts).
-	* Try to safe Surefire booster process.
-	**/
-	private void attachTestArtifacts(final String testState){
-		try {
-			BaseUtils.makeScreenCapture(String.format(" @Test - %s ", testState), Objects.nonNull(getTerminalDriverAs400()) ? getTerminalDriverAs400() : null);
-			attachText(" AS400 Screens text", BaseUtils.concatCollectionToString(getTn5250jScreenContent(), false));
-		} catch (Throwable e) {
-			log.error(format("TID [%d] ERROR - Can't attache (screenshot/screen text context) test artifacts", Thread.currentThread().getId()));
-			e.printStackTrace();
-		}
 	}
 }
