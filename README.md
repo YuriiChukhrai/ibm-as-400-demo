@@ -1,9 +1,13 @@
-![IBMi-AS400-LOGO](./doc/ibmi-as400-logo.png "IBM AS/400")  ![TN5250J](./doc/tn5250j.jpg "TN5250J")
+![IBMi-AS400-LOGO](doc/img/ibmi-as400-logo.png "IBM AS/400")  ![TN5250J](doc/img/tn5250j.jpg "TN5250J")
 
 # IBM AS/400, TN5250J(JAVA) Demo [AS/400 Test Automation Tests]
 
 This **[repository](https://github.com/YuriiChukhrai/ibm-as-400-demo)** contain the POC for test automation on JAVA, for applications running on the IBM AS/400 OS.
 
+
+## Article
+* Local: [Test Automation for Mainframe (IBMi AS/400)](./doc/test-automation-for-mainframe.md)
+* [LinkedIn](https://www.linkedin.com/pulse/test-automation-mainframe-yurii-chukhrai)
 
 ## Introduction
 When I am doing an interview of candidates, the previous projects (in git hub or maybe on their machine) are much more critical for me than some fundamental questions about Git, Java, Selenium, Maven, or Jenkins.
